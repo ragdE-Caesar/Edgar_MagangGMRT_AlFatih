@@ -1,0 +1,39 @@
+[0.393s] Invoking command in '/home/muhammad-edgar/mwagang_ws/src/arm_model': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/arm_model build --build-base /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/build install --record /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/install.log --install-scripts $base/lib/arm_model --single-version-externally-managed install_data
+[0.503s] running egg_info
+[0.503s] creating build/arm_model/arm_model.egg-info
+[0.509s] writing build/arm_model/arm_model.egg-info/PKG-INFO
+[0.509s] writing dependency_links to build/arm_model/arm_model.egg-info/dependency_links.txt
+[0.509s] writing requirements to build/arm_model/arm_model.egg-info/requires.txt
+[0.510s] writing top-level names to build/arm_model/arm_model.egg-info/top_level.txt
+[0.510s] writing manifest file 'build/arm_model/arm_model.egg-info/SOURCES.txt'
+[0.527s] reading manifest file 'build/arm_model/arm_model.egg-info/SOURCES.txt'
+[0.528s] adding license file 'LICENSE'
+[0.528s] writing manifest file 'build/arm_model/arm_model.egg-info/SOURCES.txt'
+[0.528s] running build
+[0.528s] running build_py
+[0.528s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/build
+[0.528s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/build/lib
+[0.528s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/build/lib/arm_model
+[0.528s] copying arm_model/__init__.py -> /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/build/lib/arm_model
+[0.528s] running install
+[0.531s] running install_lib
+[0.539s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/lib/python3.12/site-packages/arm_model
+[0.539s] copying /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/build/lib/arm_model/__init__.py -> /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/lib/python3.12/site-packages/arm_model
+[0.539s] byte-compiling /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/lib/python3.12/site-packages/arm_model/__init__.py to __init__.cpython-312.pyc
+[0.540s] running install_data
+[0.540s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/ament_index
+[0.540s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/ament_index/resource_index
+[0.540s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/ament_index/resource_index/packages
+[0.540s] copying resource/arm_model -> /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/ament_index/resource_index/packages
+[0.540s] copying package.xml -> /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/arm_model
+[0.540s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/arm_model/urdf
+[0.540s] copying urdf/arm.urdf -> /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/arm_model/urdf
+[0.540s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/arm_model/launch
+[0.540s] copying launch/display.launch.py -> /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/arm_model/launch
+[0.540s] creating /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/arm_model/config
+[0.540s] copying config/rviz_convig.rvis -> /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/share/arm_model/config
+[0.541s] running install_egg_info
+[0.548s] Copying build/arm_model/arm_model.egg-info to /home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/lib/python3.12/site-packages/arm_model-0.0.0-py3.12.egg-info
+[0.549s] running install_scripts
+[0.600s] writing list of installed files to '/home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/install.log'
+[0.621s] Invoked command in '/home/muhammad-edgar/mwagang_ws/src/arm_model' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/muhammad-edgar/mwagang_ws/src/arm_model/install/arm_model/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/arm_model build --build-base /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/build install --record /home/muhammad-edgar/mwagang_ws/src/arm_model/build/arm_model/install.log --install-scripts $base/lib/arm_model --single-version-externally-managed install_data
