@@ -1,68 +1,82 @@
 <?xml version="1.0"?>
 <robot name="intern_arm">
-    <link name="base_link">
+    
+    <link name="link_1">
         <visual>
             <geometry>
                 <cylinder radius="0.2" length="0.1"/>
             </geometry>
             <origin xyz="0 0 0.1" rpy="0 0 0"/>
-            <material name="hijau">
+            <material name="green">
                 <color rgba="0 1 0 1"/>
             </material>
         </visual>
     </link>
 
-    <link name="base2">
+    <link name="link_2">
         <visual>
             <geometry>
                 <cylinder radius="0.1" length="2"/>
             </geometry>
+
         </visual>
     </link>
 
-    <link name="base3">
+    <link name="link_3">
         <visual>
             <geometry>
                 <cylinder radius="0.1" length="1.5"/>
             </geometry>
             <origin xyz="0 0 0.75" rpy="0 0 0"/>
-            <material name="merah">
+            <material name="red">
                 <color rgba="1 0 0 1"/>
             </material>
         </visual>
     </link>
 
-    <link name="base4">
-        <visual>
+    <link name="link_4">
+        <visual name="gripper_base">
+            <origin xyz="0.15 0 0" rpy="0 0 0"/>
             <geometry>
-                <cylinder radius="0.1" length="1"/>
+                <box size="0.3 0.12 0.08"/>
             </geometry>
-            <origin xyz="-0.5 0 0.5" rpy="0 0 0"/>
-            <material name="merah">
-                <color rgba="1 0 0 1"/>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
             </material>
+        </visual>
+        <visual name="left_finger">
+            <origin xyz="0.32 0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.08 0.02 0.16"/>
+            </geometry>
+        </visual>
+        <visual name="right_finger">
+            <origin xyz="0.32 -0.05 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.08 0.02 0.16"/>
+            </geometry>
         </visual>
     </link>
 
-    <joint name="base_to_base2" type="continuous">
-        <parent link="base_link"/>
-        <child link="base2"/>
+    <joint name="joint_1" type="continuous">
+        <parent link="link_1"/>
+        <child link="link_2"/>
         <origin xyz="0 0 1.1" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
     </joint>
 
-    <joint name="base2_to_base3" type="revolute">
-        <parent link="base2"/>
-        <child link="base3"/>
+    <joint name="joint_2" type="revolute">
+        <parent link="link_2"/>
+        <child link="link_3"/>
         <origin xyz="0 0 1" rpy="0 1.57 0"/>
         <axis xyz="0 1 0"/>
         <limit lower="-1.57" upper="0" effort="50.0" velocity="2.0"/>
     </joint>
 
-    <joint name="base3_to_base4" type="revolute">
-        <parent link="base3"/>
-        <child link="base4"/>
-        <origin xyz="0 0 1" rpy="0 1.57 0"/>
+    <joint name="joint_3" type="revolute">
+        <parent link="link_3"/>
+        <child link="link_4"/>
+        <origin xyz="0 0 1.5" rpy="0 0 0"/>
         <axis xyz="0 1 0"/>
         <limit lower="-1.57" upper="0" effort="50.0" velocity="2.0"/>
     </joint>
