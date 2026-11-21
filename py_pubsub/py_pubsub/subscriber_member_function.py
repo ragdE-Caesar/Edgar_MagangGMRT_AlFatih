@@ -12,13 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from geometry_msgs.msg import Quaternion
+
 import rclpy
-import numpy as np
 from rclpy.node import Node
 
-# from std_msgs.msg import Float64
 from scipy.spatial.transform import Rotation as R
-from geometry_msgs.msg import Quaternion
 
 
 class MinimalSubscriber(Node):
@@ -33,23 +32,29 @@ class MinimalSubscriber(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
+        roll, pitch, yaw = R.from_quat(
+            [msg.x, msg.y, msg.z, msg.w]).as_euler('xyz', degrees=True)
 
-        r = R.from_quat([msg.x, msg.y, msg.z, msg.w])
+        tilt_limit = 15.0
+        yaw_deadband = 15.0
+        if abs(roll) > tilt_limit or abs(pitch) > tilt_limit:
+            response = 'Berhenti: kemiringan robot terlalu besar'
+        elif yaw > yaw_deadband:
+            response = 'Putar ke kiri'
+        elif yaw < -yaw_deadband:
+            response = 'Putar ke kanan'
+        else:
+            response = 'Jalan maju'
 
-        r, p, y = r.as_euler('xyz', degrees=True)
-        self.get_logger().info(f"{r}, {p}, {y}")
+        self.get_logger().info(
+            f'Roll={roll:.2f}°, Pitch={pitch:.2f}°, Yaw={yaw:.2f}°; '
+            f'respon robot: {response}')
 
 
 def main(args=None):
     rclpy.init(args=args)
-
     minimal_subscriber = MinimalSubscriber()
-
     rclpy.spin(minimal_subscriber)
-
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
     minimal_subscriber.destroy_node()
     rclpy.shutdown()
 
