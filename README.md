@@ -1,45 +1,46 @@
-# PR 2: Quaternion to Roll, Pitch, Yaw
+# PR 2: Konversi Quaternion ke Roll, Pitch, dan Yaw
 
-The `py_pubsub` package publishes a hard-coded
-`geometry_msgs/msg/Quaternion` on `hidup_jokowi`. The subscriber reads the same
-topic and message type, converts the quaternion to roll, pitch, and yaw, and
-prints the angles in degrees along with a simple robot response.
+Paket `py_pubsub` menerbitkan pesan `geometry_msgs/msg/Quaternion` dengan nilai
+yang ditentukan langsung di kode, pada topik `hidup_jokowi`. Subscriber menerima
+pesan dari topik dan tipe yang sama, mengonversi quaternion menjadi roll, pitch,
+dan yaw, lalu mencetak sudut dalam derajat beserta perkiraan respons robot.
 
-Run the nodes from a sourced ROS 2 workspace:
+Jalankan kedua node dari workspace ROS 2 yang sudah dimuat:
 
 ```bash
 ros2 run py_pubsub stalker
 ros2 run py_pubsub penguntit
 ```
 
-The publisher sends `(x, y, z, w) = (0, 0, 0.5, 1)`. These components are all
-within `[-1, 1]`; the quaternion is not unit length, so SciPy normalizes it
-before conversion. The subscriber uses SciPy's scalar-last `(x, y, z, w)`
-convention and `as_euler('xyz', degrees=True)`. For a normalized quaternion,
-the equivalent roll-pitch-yaw equations are:
+Publisher mengirim `(x, y, z, w) = (0, 0, 0.5, 1)`. Semua komponennya berada
+dalam rentang `[-1, 1]`. Quaternion ini belum ternormalisasi, sehingga SciPy
+menormalisasikannya sebelum konversi. Subscriber menggunakan urutan komponen
+`(x, y, z, w)` dan `as_euler('xyz', degrees=True)`. Untuk quaternion yang sudah
+ternormalisasi, rumus roll, pitch, dan yaw yang setara adalah:
 
 ```text
 roll  = atan2(2(wx + yz), 1 - 2(x^2 + y^2))
 pitch = asin(clamp(2(wy - zx), -1, 1))
 yaw   = atan2(2(wz + xy), 1 - 2(y^2 + z^2))
-degrees = radians * 180 / pi
+derajat = radian * 180 / pi
 ```
 
-The clamp keeps the pitch input in the valid `asin` range in the presence of
-floating-point rounding. With the sample input, the expected result is about
-`roll=0°`, `pitch=0°`, `yaw=53.13°`.
+Fungsi `clamp` memastikan masukan `asin` tetap berada dalam rentang yang valid
+akibat pembulatan bilangan pecahan. Dengan nilai contoh di atas, hasil yang
+diharapkan kira-kira `roll=0°`, `pitch=0°`, dan `yaw=53.13°`.
 
-## Robot-response assumption
+## Asumsi respons robot
 
-This is only a demonstration, not a motion controller. It assumes a differential
-drive robot standing on a flat floor, with its forward direction aligned to
-world `+X` and zero yaw. A roll or pitch magnitude above 15 degrees means
-`Berhenti`; otherwise yaw above 15 degrees means `Putar ke kiri`, yaw below
--15 degrees means `Putar ke kanan`, and values in the yaw deadband mean
-`Jalan maju`. Positive yaw is counter-clockwise about `+Z` (left turn).
+Respons ini hanya demonstrasi, bukan pengendali gerak. Asumsinya robot
+penggerak diferensial berada di lantai datar, arah maju sejajar sumbu dunia `+X`,
+dan yaw nol berarti menghadap ke depan. Jika besar roll atau pitch melebihi
+15 derajat, robot berhenti. Jika tidak, yaw di atas 15 derajat berarti berputar
+ke kiri, yaw di bawah -15 derajat berarti berputar ke kanan, dan yaw di antara
+-15 hingga 15 derajat berarti maju. Yaw positif adalah rotasi berlawanan arah
+jarum jam pada sumbu `+Z` (belok kiri).
 
-## References
+## Sumber
 
-- [SciPy `Rotation.from_quat`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.from_quat.html)
-- [SciPy `Rotation.as_euler`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_euler.html)
-- [ROS 2 `geometry_msgs/msg/Quaternion`](https://docs.ros.org/en/jazzy/p/geometry_msgs/msg/Quaternion.html)
+- [Dokumentasi SciPy: `Rotation.from_quat`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.from_quat.html)
+- [Dokumentasi SciPy: `Rotation.as_euler`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_euler.html)
+- [Dokumentasi ROS 2: `geometry_msgs/msg/Quaternion`](https://docs.ros.org/en/jazzy/p/geometry_msgs/msg/Quaternion.html)
