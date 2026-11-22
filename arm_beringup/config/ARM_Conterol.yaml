@@ -1,0 +1,17 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50 # Dlm Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_controller:
+      type: position_controllers/JointGroupPositionController
+
+# Harus sejajar (rata kiri) dengan controller_manager
+arm_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
