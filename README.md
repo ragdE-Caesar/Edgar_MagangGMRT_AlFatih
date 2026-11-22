@@ -44,3 +44,20 @@ jarum jam pada sumbu `+Z` (belok kiri).
 - [Dokumentasi SciPy: `Rotation.from_quat`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.from_quat.html)
 - [Dokumentasi SciPy: `Rotation.as_euler`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_euler.html)
 - [Dokumentasi ROS 2: `geometry_msgs/msg/Quaternion`](https://docs.ros.org/en/jazzy/p/geometry_msgs/msg/Quaternion.html)
+
+
+#PR 3
+### Jawaban Soal 1
+
+1. **Kegunaan tag `<ros2_control>` pada file URDF:**  
+   Digunakan untuk mendaftarkan antarmuka perangkat keras (*hardware interface*) robot ke framework `ros2_control`, sekaligus mendefinisikan *joint* mana saja (`joint_1`, `joint_2`, dan `joint_3`) yang dapat menerima perintah gerak (`command_interface`) dan melaporkan status posisinya (`state_interface`) ke controller.
+
+2. **Tipe plugin controller/hardware yang digunakan:**  
+   * **Hardware Plugin (di URDF):** `mock_components/GenericSystem` untuk mensimulasikan sistem perangkat keras/aktuator secara virtual tanpa robot fisik.
+   * **Controller Plugin:** `position_controllers/JointGroupPositionController` (pada `arm_controller`) untuk menggerakkan *joint* berdasarkan target posisi sudut, serta `joint_state_broadcaster/JointStateBroadcaster` untuk memublikasikan status *joint* ke topik `/joint_states`.
+
+3. **Node yang dijalankan di `beringup.launch.py`:**  
+   * **`robot_state_publisher`:** Membaca deskripsi robot dari `arm.urdf` dan memublikasikan struktur transformasi (TF) antar-*link*.
+   * **`ros2_control_node` (`controller_manager`):** Mengelola siklus hidup *controller* serta menghubungkan konfigurasi dari `ARM_Conterol.yaml` dengan *hardware interface*.
+   * **`spawner` (`controller_spawner`):** Memuat dan mengaktifkan `joint_state_broadcaster` serta `arm_controller`.
+   * **`rviz2`:** Menampilkan visualisasi model 3D robot dan pergerakan *frame* TF berdasarkan konfigurasi `arm.rviz`.
