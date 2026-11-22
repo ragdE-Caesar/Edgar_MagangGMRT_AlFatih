@@ -46,8 +46,7 @@ jarum jam pada sumbu `+Z` (belok kiri).
 - [Dokumentasi ROS 2: `geometry_msgs/msg/Quaternion`](https://docs.ros.org/en/jazzy/p/geometry_msgs/msg/Quaternion.html)
 
 
-#PR 3
-### Jawaban Soal 1
+### PR3: Jawaban Soal 1
 
 1. **Kegunaan tag `<ros2_control>` pada file URDF:**  
    Digunakan untuk mendaftarkan antarmuka perangkat keras (*hardware interface*) robot ke framework `ros2_control`, sekaligus mendefinisikan *joint* mana saja (`joint_1`, `joint_2`, dan `joint_3`) yang dapat menerima perintah gerak (`command_interface`) dan melaporkan status posisinya (`state_interface`) ke controller.
